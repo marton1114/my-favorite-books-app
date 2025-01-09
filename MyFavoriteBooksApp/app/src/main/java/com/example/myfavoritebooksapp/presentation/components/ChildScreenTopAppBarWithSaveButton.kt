@@ -10,6 +10,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.example.myfavoritebooksapp.R
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -28,7 +30,8 @@ fun ChildScreenTopAppBarWithSaveButton(
             IconButton(onClick = onArrowClick) {
                 Icon(
                     Icons.AutoMirrored.Default.ArrowBack,
-                    "Navigate Back Icon")
+                    stringResource(R.string.content_description_navigate_back_icon)
+                )
             }
         },
         actions = {
@@ -38,7 +41,8 @@ fun ChildScreenTopAppBarWithSaveButton(
             ) {
                 Icon(
                     Icons.Default.Save,
-                    "Save Icon")
+                    stringResource(R.string.content_description_save_icon)
+                )
             }
         },
         modifier = modifier

@@ -17,10 +17,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.example.myfavoritebooksapp.R
 import com.example.myfavoritebooksapp.data.model.Book
 import com.example.myfavoritebooksapp.presentation.components.ChildScreenTopAppBar
 
@@ -32,7 +34,7 @@ fun BookDetailsScreen(
     Scaffold(
         topBar = {
             ChildScreenTopAppBar(
-                title = "Könyv részletei",
+                title = stringResource(R.string.book_description_title_label),
                 onClick =  { navigateBack() },
             )
         },
@@ -56,7 +58,7 @@ fun BookDetailsScreen(
                 ) {
                     AsyncImage(
                         model = book.coverUrl,
-                        contentDescription = "Book Cover",
+                        contentDescription = stringResource(R.string.content_description_book_cover),
                         modifier = Modifier
                             .fillMaxWidth()
                             .weight(0.5F)

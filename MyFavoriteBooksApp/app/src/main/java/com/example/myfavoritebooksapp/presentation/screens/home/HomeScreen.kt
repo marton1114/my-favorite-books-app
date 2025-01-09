@@ -20,9 +20,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.myfavoritebooksapp.R
 import com.example.myfavoritebooksapp.data.model.Book
 import com.example.myfavoritebooksapp.presentation.components.HomeFloatingActionButton
 import com.example.myfavoritebooksapp.presentation.screens.home.components.BookListComponent
@@ -41,8 +43,8 @@ fun HomeScreen(
     }
 
     Scaffold(
-        topBar = { CenterAlignedTopAppBar({ Text("Kedvenc Könyveim")}) },
-        floatingActionButton = { HomeFloatingActionButton("Új Könyv", { navigateToAddBookScreen() }) }
+        topBar = { CenterAlignedTopAppBar({ Text(stringResource(R.string.my_favorite_books_title_label))}) },
+        floatingActionButton = { HomeFloatingActionButton(stringResource(R.string.floating_action_button_new_book_label), { navigateToAddBookScreen() }) }
     ) { paddingValues ->
         Column(
             modifier = Modifier
@@ -55,7 +57,7 @@ fun HomeScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "${state.books.size} KÖNYV",
+                    text = stringResource(R.string.number_of_books_label, state.books.size),
                     fontWeight = FontWeight.Bold,
                 )
                 Spacer(modifier = Modifier.weight(1F))
@@ -65,7 +67,8 @@ fun HomeScreen(
                     shape = RoundedCornerShape(8.dp),
                     border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary),
                 ) {
-                    Text("*Palindrómot tartalmazó címek",
+                    Text(
+                        stringResource(R.string.palindrome_explanation_label),
                         modifier = Modifier.padding(2.dp))
                 }
             }

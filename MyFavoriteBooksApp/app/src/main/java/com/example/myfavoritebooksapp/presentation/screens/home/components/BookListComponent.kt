@@ -21,9 +21,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.example.myfavoritebooksapp.R
 
 @Composable
 fun BookListComponent(
@@ -64,7 +66,7 @@ fun BookListComponent(
         ) {
             AsyncImage(
                 model = bookListItem.book.coverUrl,
-                contentDescription = null,
+                contentDescription = stringResource(R.string.content_description_book_cover),
                 contentScale = ContentScale.FillWidth,
                 modifier = Modifier
                     .width(72.dp)
@@ -79,7 +81,8 @@ fun BookListComponent(
 
             Spacer(modifier = Modifier.weight(1F))
 
-            Icon(Icons.Default.KeyboardDoubleArrowRight, "")
+            Icon(Icons.Default.KeyboardDoubleArrowRight,
+                stringResource(R.string.content_description_book_list_component))
         }
     }
 }

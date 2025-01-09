@@ -9,6 +9,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.example.myfavoritebooksapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -24,7 +26,8 @@ fun ChildScreenTopAppBar(
         navigationIcon = {
             IconButton(onClick = onClick) {
                 Icon(Icons.AutoMirrored.Default.ArrowBack,
-                    "Navigate Back Icon")
+                    stringResource(R.string.content_description_navigate_back_icon)
+                )
             }
         },
         modifier = modifier

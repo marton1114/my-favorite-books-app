@@ -42,10 +42,12 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
+import com.example.myfavoritebooksapp.R
 import com.example.myfavoritebooksapp.presentation.components.ChildScreenTopAppBarWithSaveButton
 import com.example.myfavoritebooksapp.presentation.screens.add_book.components.CoverUrlInputDialog
 import com.example.myfavoritebooksapp.presentation.screens.add_book.components.rememberImeState
@@ -76,7 +78,7 @@ fun AddBookScreen(
         },
         topBar = {
             ChildScreenTopAppBarWithSaveButton(
-                title = "Új könyv hozzáadása",
+                title = stringResource(R.string.add_book_title),
                 onArrowClick =  { navigateBack() },
                 onSaveClick =  {
                     viewModel.onEvent(AddBookEvent.OnSaveButtonClicked)
@@ -120,7 +122,7 @@ fun AddBookScreen(
                             .fillMaxHeight()
                     ) {
                         Text(
-                            text = "Borító",
+                            text = stringResource(R.string.cover_form_label),
                             style = MaterialTheme.typography.bodyLarge
                         )
 
@@ -128,14 +130,18 @@ fun AddBookScreen(
                             modifier = Modifier
                                 .padding(top = 8.dp)
                                 .fillMaxSize()
-                                .border(1.dp, MaterialTheme.colorScheme.outline, RoundedCornerShape(4.dp)),
+                                .border(
+                                    1.dp,
+                                    MaterialTheme.colorScheme.outline,
+                                    RoundedCornerShape(4.dp)
+                                ),
                             contentAlignment = Alignment.Center,
                         ) {
                             if (state.asyncImageUrl != "") {
                                 AsyncImage(
                                     model = state.asyncImageUrl,
                                     contentScale = ContentScale.FillWidth,
-                                    contentDescription = "Book Cover",
+                                    contentDescription = stringResource(R.string.content_description_book_cover),
                                     alpha = 0.65F,
                                     modifier = Modifier
                                         .align(Alignment.Center)
@@ -153,7 +159,8 @@ fun AddBookScreen(
                                     .fillMaxSize()
                             ) {
                                 Icon(
-                                    Icons.Default.AddCircleOutline, "Add Book Icon",
+                                    Icons.Default.AddCircleOutline,
+                                    stringResource(R.string.content_description_add_book_icon),
                                     modifier = Modifier.size(72.dp)
                                 )
                             }
@@ -165,7 +172,7 @@ fun AddBookScreen(
                         verticalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         Text(
-                            text = "Cím",
+                            text = stringResource(R.string.book_title_form_label),
                             style = MaterialTheme.typography.bodyLarge
                         )
 
@@ -174,7 +181,7 @@ fun AddBookScreen(
                             onValueChange = { newValue ->
                                 viewModel.onEvent(AddBookEvent.OnChangeTitleValue(newValue))
                             },
-                            placeholder = { Text("A könyv címe") },
+                            placeholder = { Text(stringResource(R.string.book_title_form_placeholder)) },
                             singleLine = true,
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -190,7 +197,7 @@ fun AddBookScreen(
                         )
 
                         Text(
-                            text = "Szerző",
+                            text = stringResource(R.string.book_author_form_label),
                             style = MaterialTheme.typography.bodyLarge
                         )
 
@@ -199,7 +206,7 @@ fun AddBookScreen(
                             onValueChange = { newValue ->
                                 viewModel.onEvent(AddBookEvent.OnChangeAuthorValue(newValue))
                             },
-                            placeholder = { Text("A könyv szerzője") },
+                            placeholder = { Text(stringResource(R.string.book_author_form_placeholder)) },
                             singleLine = true,
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -217,7 +224,7 @@ fun AddBookScreen(
                 }
 
                 Text(
-                    text = "Leírás",
+                    text = stringResource(R.string.book_description_form_label),
                     style = MaterialTheme.typography.bodyLarge
                 )
 
@@ -226,7 +233,7 @@ fun AddBookScreen(
                     onValueChange = { newValue ->
                         viewModel.onEvent(AddBookEvent.OnChangeDescriptionValue(newValue))
                     },
-                    placeholder = { Text("A könyv leírása") },
+                    placeholder = { Text(stringResource(R.string.book_description_form_placeholder)) },
                     minLines = 3,
                     modifier = Modifier
                         .fillMaxWidth()

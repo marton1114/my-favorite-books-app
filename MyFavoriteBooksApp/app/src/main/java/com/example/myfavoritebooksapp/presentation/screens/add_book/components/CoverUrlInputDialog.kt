@@ -17,8 +17,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import com.example.myfavoritebooksapp.R
 
 @Composable
 fun CoverUrlInputDialog(
@@ -40,7 +42,7 @@ fun CoverUrlInputDialog(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Text(
-                    text = "Add meg az URL-t",
+                    text = stringResource(R.string.cover_url_input_dialog_label),
                     style = MaterialTheme.typography.headlineMedium
                 )
 
@@ -50,7 +52,7 @@ fun CoverUrlInputDialog(
                     modifier = Modifier.fillMaxWidth(),
                     singleLine = true,
                     placeholder = {
-                        Text("e.g. https://humanitas.ro/assets/images/products/Anna-Karenina.jpg")
+                        Text(stringResource(R.string.cover_url_input_dialog_placeholder))
                     }
                 )
 
@@ -59,14 +61,14 @@ fun CoverUrlInputDialog(
                     horizontalArrangement = Arrangement.End,
                 ) {
                     OutlinedButton(onClick = onDismissRequest) {
-                        Text("Mégse")
+                        Text(stringResource(R.string.cancel_button_label))
                     }
                     Spacer(modifier = Modifier.width(4.dp))
                     FilledTonalButton(onClick = {
                         onSubmit(coverUrlValue)
                         onDismissRequest()
                     }) {
-                        Text("Kész")
+                        Text(stringResource(R.string.submit_button_label))
                     }
                 }
             }
