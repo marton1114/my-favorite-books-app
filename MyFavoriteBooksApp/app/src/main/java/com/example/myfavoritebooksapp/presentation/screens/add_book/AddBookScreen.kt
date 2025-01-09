@@ -87,180 +87,176 @@ fun AddBookScreen(
             )
         },
     ) { paddingValues ->
-        Surface(
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
                 .padding(paddingValues)
-                .padding(16.dp),
+                .padding(16.dp)
+                .verticalScroll(scrollState),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .verticalScroll(scrollState),
-                verticalArrangement = Arrangement.spacedBy(8.dp)
-            ) {
-                AnimatedVisibility(state.errorMessage.isNotEmpty()) {
-                    Surface(
-                        shape = RoundedCornerShape(4.dp),
-                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.error),
-                        contentColor = MaterialTheme.colorScheme.error,
-                        color = MaterialTheme.colorScheme.errorContainer,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                    ) { Text(state.errorMessage, modifier = Modifier.padding(8.dp)) }
-                }
-                Row(
+            AnimatedVisibility(state.errorMessage.isNotEmpty()) {
+                Surface(
+                    shape = RoundedCornerShape(4.dp),
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.error),
+                    contentColor = MaterialTheme.colorScheme.error,
+                    color = MaterialTheme.colorScheme.errorContainer,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(IntrinsicSize.Min),
-                    verticalAlignment = Alignment.Top,
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                ) { Text(state.errorMessage, modifier = Modifier.padding(8.dp)) }
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(IntrinsicSize.Min),
+                verticalAlignment = Alignment.Top,
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Column(
+                    modifier = Modifier
+                        .weight(0.33F, true)
+                        .fillMaxHeight()
                 ) {
-                    Column(
+                    Text(
+                        text = stringResource(R.string.cover_form_label),
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+
+                    Box (
                         modifier = Modifier
-                            .weight(0.33F, true)
-                            .fillMaxHeight()
+                            .padding(top = 8.dp)
+                            .fillMaxSize()
+                            .border(
+                                1.dp,
+                                MaterialTheme.colorScheme.outline,
+                                RoundedCornerShape(4.dp)
+                            ),
+                        contentAlignment = Alignment.Center,
                     ) {
-                        Text(
-                            text = stringResource(R.string.cover_form_label),
-                            style = MaterialTheme.typography.bodyLarge
-                        )
-
-                        Box (
-                            modifier = Modifier
-                                .padding(top = 8.dp)
-                                .fillMaxSize()
-                                .border(
-                                    1.dp,
-                                    MaterialTheme.colorScheme.outline,
-                                    RoundedCornerShape(4.dp)
-                                ),
-                            contentAlignment = Alignment.Center,
-                        ) {
-                            if (state.asyncImageUrl != "") {
-                                AsyncImage(
-                                    model = state.asyncImageUrl,
-                                    contentScale = ContentScale.FillWidth,
-                                    contentDescription = stringResource(R.string.content_description_book_cover),
-                                    alpha = 0.65F,
-                                    modifier = Modifier
-                                        .align(Alignment.Center)
-                                        .fillMaxSize()
-                                        .clip(RoundedCornerShape(4.dp)),
-                                )
-                            }
-
-                            IconButton(
-                                onClick = {
-                                    viewModel.onEvent(AddBookEvent.OnChangeCoverUrlInputDialogVisibility)
-                                },
+                        if (state.asyncImageUrl != "") {
+                            AsyncImage(
+                                model = state.asyncImageUrl,
+                                contentScale = ContentScale.FillWidth,
+                                contentDescription = stringResource(R.string.content_description_book_cover),
+                                alpha = 0.65F,
                                 modifier = Modifier
                                     .align(Alignment.Center)
                                     .fillMaxSize()
-                            ) {
-                                Icon(
-                                    Icons.Default.AddCircleOutline,
-                                    stringResource(R.string.content_description_add_book_icon),
-                                    modifier = Modifier.size(72.dp)
-                                )
-                            }
+                                    .clip(RoundedCornerShape(4.dp)),
+                            )
                         }
-                    }
 
-                    Column(
-                        modifier = Modifier.weight(0.66F),
-                        verticalArrangement = Arrangement.spacedBy(8.dp)
-                    ) {
-                        Text(
-                            text = stringResource(R.string.book_title_form_label),
-                            style = MaterialTheme.typography.bodyLarge
-                        )
-
-                        OutlinedTextField(
-                            value = state.titleValue,
-                            onValueChange = { newValue ->
-                                viewModel.onEvent(AddBookEvent.OnChangeTitleValue(newValue))
+                        IconButton(
+                            onClick = {
+                                viewModel.onEvent(AddBookEvent.OnChangeCoverUrlInputDialogVisibility)
                             },
-                            placeholder = { Text(stringResource(R.string.book_title_form_placeholder)) },
-                            singleLine = true,
                             modifier = Modifier
-                                .fillMaxWidth()
-                                .focusRequester(focusRequester),
-                            keyboardOptions = KeyboardOptions(
-                                imeAction = ImeAction.Next
-                            ),
-                            keyboardActions = KeyboardActions(
-                                onNext = {
-                                    focusManager.moveFocus(FocusDirection.Down)
-                                }
+                                .align(Alignment.Center)
+                                .fillMaxSize()
+                        ) {
+                            Icon(
+                                Icons.Default.AddCircleOutline,
+                                stringResource(R.string.content_description_add_book_icon),
+                                tint = MaterialTheme.colorScheme.outline,
+                                modifier = Modifier.size(72.dp)
                             )
-                        )
-
-                        Text(
-                            text = stringResource(R.string.book_author_form_label),
-                            style = MaterialTheme.typography.bodyLarge
-                        )
-
-                        OutlinedTextField(
-                            value = state.authorValue,
-                            onValueChange = { newValue ->
-                                viewModel.onEvent(AddBookEvent.OnChangeAuthorValue(newValue))
-                            },
-                            placeholder = { Text(stringResource(R.string.book_author_form_placeholder)) },
-                            singleLine = true,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .focusRequester(focusRequester),
-                            keyboardOptions = KeyboardOptions(
-                                imeAction = ImeAction.Next
-                            ),
-                            keyboardActions = KeyboardActions(
-                                onNext = {
-                                    focusManager.moveFocus(FocusDirection.Down)
-                                }
-                            )
-                        )
+                        }
                     }
                 }
 
-                Text(
-                    text = stringResource(R.string.book_description_form_label),
-                    style = MaterialTheme.typography.bodyLarge
-                )
-
-                OutlinedTextField(
-                    value = state.descriptionValue,
-                    onValueChange = { newValue ->
-                        viewModel.onEvent(AddBookEvent.OnChangeDescriptionValue(newValue))
-                    },
-                    placeholder = { Text(stringResource(R.string.book_description_form_placeholder)) },
-                    minLines = 3,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .focusRequester(focusRequester),
-                    keyboardOptions = KeyboardOptions(
-                        imeAction = ImeAction.Done
-                    ),
-                    keyboardActions = KeyboardActions(
-                        onDone = {
-                            focusManager.clearFocus()
-                            viewModel.onEvent(AddBookEvent.OnSaveButtonClicked)
-                            navigateBack()
-                        }
+                Column(
+                    modifier = Modifier.weight(0.66F),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Text(
+                        text = stringResource(R.string.book_title_form_label),
+                        style = MaterialTheme.typography.bodyLarge
                     )
-                )
-            }
-        }
 
-        if (state.isCoverUrlInputDialogVisible) {
-            CoverUrlInputDialog(
-                coverUrlValue = state.coverUrlValue,
-                onCoverUrlValueChange = { viewModel.onEvent(AddBookEvent.OnChangeCoverUrlValue(it)) },
-                onDismissRequest = { viewModel.onEvent(AddBookEvent.OnChangeCoverUrlInputDialogVisibility) },
-                onSubmit = {
-                    viewModel.onEvent(AddBookEvent.OnSetAsyncImageUrl(it))
+                    OutlinedTextField(
+                        value = state.titleValue,
+                        onValueChange = { newValue ->
+                            viewModel.onEvent(AddBookEvent.OnChangeTitleValue(newValue))
+                        },
+                        placeholder = { Text(stringResource(R.string.book_title_form_placeholder)) },
+                        singleLine = true,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .focusRequester(focusRequester),
+                        keyboardOptions = KeyboardOptions(
+                            imeAction = ImeAction.Next
+                        ),
+                        keyboardActions = KeyboardActions(
+                            onNext = {
+                                focusManager.moveFocus(FocusDirection.Down)
+                            }
+                        )
+                    )
+
+                    Text(
+                        text = stringResource(R.string.book_author_form_label),
+                        style = MaterialTheme.typography.bodyLarge
+                    )
+
+                    OutlinedTextField(
+                        value = state.authorValue,
+                        onValueChange = { newValue ->
+                            viewModel.onEvent(AddBookEvent.OnChangeAuthorValue(newValue))
+                        },
+                        placeholder = { Text(stringResource(R.string.book_author_form_placeholder)) },
+                        singleLine = true,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .focusRequester(focusRequester),
+                        keyboardOptions = KeyboardOptions(
+                            imeAction = ImeAction.Next
+                        ),
+                        keyboardActions = KeyboardActions(
+                            onNext = {
+                                focusManager.moveFocus(FocusDirection.Down)
+                            }
+                        )
+                    )
                 }
+            }
+
+            Text(
+                text = stringResource(R.string.book_description_form_label),
+                style = MaterialTheme.typography.bodyLarge
+            )
+
+            OutlinedTextField(
+                value = state.descriptionValue,
+                onValueChange = { newValue ->
+                    viewModel.onEvent(AddBookEvent.OnChangeDescriptionValue(newValue))
+                },
+                placeholder = { Text(stringResource(R.string.book_description_form_placeholder)) },
+                minLines = 3,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .focusRequester(focusRequester),
+                keyboardOptions = KeyboardOptions(
+                    imeAction = ImeAction.Done
+                ),
+                keyboardActions = KeyboardActions(
+                    onDone = {
+                        focusManager.clearFocus()
+                        viewModel.onEvent(AddBookEvent.OnSaveButtonClicked)
+                        navigateBack()
+                    }
+                )
             )
         }
+    }
+
+    if (state.isCoverUrlInputDialogVisible) {
+        CoverUrlInputDialog(
+            coverUrlValue = state.coverUrlValue,
+            onCoverUrlValueChange = { viewModel.onEvent(AddBookEvent.OnChangeCoverUrlValue(it)) },
+            onDismissRequest = { viewModel.onEvent(AddBookEvent.OnChangeCoverUrlInputDialogVisibility) },
+            onSubmit = {
+                viewModel.onEvent(AddBookEvent.OnSetAsyncImageUrl(it))
+            }
+        )
     }
 }

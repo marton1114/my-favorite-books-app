@@ -39,58 +39,53 @@ fun BookDetailsScreen(
             )
         },
     ) { paddingValues ->
-        Surface(
+    Column(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
                 .padding(paddingValues)
-                .padding(16.dp),
+                .padding(16.dp)
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Column(
+            Row(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .verticalScroll(rememberScrollState()),
-                verticalArrangement = Arrangement.spacedBy(16.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Row(
+                AsyncImage(
+                    model = book.coverUrl,
+                    contentDescription = stringResource(R.string.content_description_book_cover),
                     modifier = Modifier
-                        .fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    AsyncImage(
-                        model = book.coverUrl,
-                        contentDescription = stringResource(R.string.content_description_book_cover),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .weight(0.5F)
-                            .clip(RoundedCornerShape(8.dp)),
-                        contentScale = ContentScale.FillWidth,
-                    )
-
-                    Column(
-                        modifier = Modifier
-                            .weight(0.5F)
-                    ) {
-                        Text(
-                            text = book.title,
-                            fontWeight = FontWeight.Bold,
-                            maxLines = 2,
-                            style = MaterialTheme.typography.titleLarge,
-                            modifier = Modifier.fillMaxWidth()
-                        )
-                        Text(
-                            text = book.author,
-                            fontWeight = FontWeight.Medium,
-                            style = MaterialTheme.typography.titleMedium,
-                            modifier = Modifier.fillMaxWidth()
-                        )
-                    }
-                }
-                Text(
-                    text = book.description,
-                    textAlign = TextAlign.Justify,
-                    modifier = Modifier.fillMaxWidth()
+                        .fillMaxWidth()
+                        .weight(0.5F)
+                        .clip(RoundedCornerShape(8.dp)),
+                    contentScale = ContentScale.FillWidth,
                 )
+
+                Column(
+                    modifier = Modifier
+                        .weight(0.5F)
+                ) {
+                    Text(
+                        text = book.title,
+                        fontWeight = FontWeight.Bold,
+                        maxLines = 2,
+                        style = MaterialTheme.typography.titleLarge,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                    Text(
+                        text = book.author,
+                        fontWeight = FontWeight.Medium,
+                        style = MaterialTheme.typography.titleMedium,
+                        modifier = Modifier.fillMaxWidth()
+                    )
+                }
             }
+            Text(
+                text = book.description,
+                textAlign = TextAlign.Justify,
+                modifier = Modifier.fillMaxWidth()
+            )
         }
     }
 }

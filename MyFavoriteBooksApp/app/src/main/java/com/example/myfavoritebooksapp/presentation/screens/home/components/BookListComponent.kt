@@ -33,11 +33,6 @@ fun BookListComponent(
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val borderStroke: Dp =
-        if (bookListItem.isPalindrome)
-            1.dp
-        else
-            -1.dp
     val color =
         if (bookListItem.isPalindrome)
             MaterialTheme.colorScheme.primaryContainer
@@ -55,7 +50,6 @@ fun BookListComponent(
         color = color,
         contentColor = containerColor,
         shape = RoundedCornerShape(8.dp),
-        border = BorderStroke(borderStroke, MaterialTheme.colorScheme.primary)
     ) {
         Row(
             modifier = modifier
