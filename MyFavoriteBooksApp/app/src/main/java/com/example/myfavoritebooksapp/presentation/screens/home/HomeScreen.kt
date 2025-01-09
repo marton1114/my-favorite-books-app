@@ -37,7 +37,7 @@ fun HomeScreen(
     val state = viewModel.state
 
     LaunchedEffect(Unit) {
-        viewModel.onEvent(HomeEvent.onRefreshBookList)
+        viewModel.onEvent(HomeEvent.OnRefreshBookList)
     }
 
     Scaffold(

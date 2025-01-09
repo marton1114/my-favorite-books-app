@@ -21,7 +21,7 @@ class AddBookViewModel @Inject constructor(
 
     fun onEvent(event: AddBookEvent) {
         when (event) {
-            is AddBookEvent.onSaveButtonClicked -> {
+            is AddBookEvent.OnSaveButtonClicked -> {
                 val book = Book(0L, state.titleValue, state.authorValue, state.descriptionValue,
                     state.coverUrlValue)
                 state = state.copy(
@@ -35,22 +35,22 @@ class AddBookViewModel @Inject constructor(
                     )
                 }
             }
-            is AddBookEvent.onChangeTitleValue -> {
+            is AddBookEvent.OnChangeTitleValue -> {
                 state = state.copy(titleValue = event.newValue)
             }
-            is AddBookEvent.onChangeAuthorValue -> {
+            is AddBookEvent.OnChangeAuthorValue -> {
                 state = state.copy(authorValue = event.newValue)
             }
-            is AddBookEvent.onChangeDescriptionValue -> {
+            is AddBookEvent.OnChangeDescriptionValue -> {
                 state = state.copy(descriptionValue = event.newValue)
             }
-            is AddBookEvent.onChangeCoverUrlValue -> {
+            is AddBookEvent.OnChangeCoverUrlValue -> {
                 state = state.copy(coverUrlValue = event.newValue)
             }
-            is AddBookEvent.onSetAsyncImageUrl -> {
+            is AddBookEvent.OnSetAsyncImageUrl -> {
                 state = state.copy(asyncImageUrl = event.url)
             }
-            is AddBookEvent.onChangeCoverUrlInputDialogVisibility -> {
+            is AddBookEvent.OnChangeCoverUrlInputDialogVisibility -> {
                 state = state.copy(isCoverUrlInputDialogVisible = ! state.isCoverUrlInputDialogVisible)
             }
         }

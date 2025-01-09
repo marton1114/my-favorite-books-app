@@ -22,7 +22,6 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.AddCircleOutline
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -80,7 +79,7 @@ fun AddBookScreen(
                 title = "Új könyv hozzáadása",
                 onArrowClick =  { navigateBack() },
                 onSaveClick =  {
-                    viewModel.onEvent(AddBookEvent.onSaveButtonClicked)
+                    viewModel.onEvent(AddBookEvent.OnSaveButtonClicked)
 //                    navigateBack()
                 }
             )
@@ -147,7 +146,7 @@ fun AddBookScreen(
 
                             IconButton(
                                 onClick = {
-                                    viewModel.onEvent(AddBookEvent.onChangeCoverUrlInputDialogVisibility)
+                                    viewModel.onEvent(AddBookEvent.OnChangeCoverUrlInputDialogVisibility)
                                 },
                                 modifier = Modifier
                                     .align(Alignment.Center)
@@ -173,7 +172,7 @@ fun AddBookScreen(
                         OutlinedTextField(
                             value = state.titleValue,
                             onValueChange = { newValue ->
-                                viewModel.onEvent(AddBookEvent.onChangeTitleValue(newValue))
+                                viewModel.onEvent(AddBookEvent.OnChangeTitleValue(newValue))
                             },
                             placeholder = { Text("A könyv címe") },
                             singleLine = true,
@@ -198,7 +197,7 @@ fun AddBookScreen(
                         OutlinedTextField(
                             value = state.authorValue,
                             onValueChange = { newValue ->
-                                viewModel.onEvent(AddBookEvent.onChangeAuthorValue(newValue))
+                                viewModel.onEvent(AddBookEvent.OnChangeAuthorValue(newValue))
                             },
                             placeholder = { Text("A könyv szerzője") },
                             singleLine = true,
@@ -225,7 +224,7 @@ fun AddBookScreen(
                 OutlinedTextField(
                     value = state.descriptionValue,
                     onValueChange = { newValue ->
-                        viewModel.onEvent(AddBookEvent.onChangeDescriptionValue(newValue))
+                        viewModel.onEvent(AddBookEvent.OnChangeDescriptionValue(newValue))
                     },
                     placeholder = { Text("A könyv leírása") },
                     minLines = 3,
@@ -238,7 +237,7 @@ fun AddBookScreen(
                     keyboardActions = KeyboardActions(
                         onDone = {
                             focusManager.clearFocus()
-                            viewModel.onEvent(AddBookEvent.onSaveButtonClicked)
+                            viewModel.onEvent(AddBookEvent.OnSaveButtonClicked)
                             navigateBack()
                         }
                     )
@@ -249,10 +248,10 @@ fun AddBookScreen(
         if (state.isCoverUrlInputDialogVisible) {
             CoverUrlInputDialog(
                 coverUrlValue = state.coverUrlValue,
-                onCoverUrlValueChange = { viewModel.onEvent(AddBookEvent.onChangeCoverUrlValue(it)) },
-                onDismissRequest = { viewModel.onEvent(AddBookEvent.onChangeCoverUrlInputDialogVisibility) },
+                onCoverUrlValueChange = { viewModel.onEvent(AddBookEvent.OnChangeCoverUrlValue(it)) },
+                onDismissRequest = { viewModel.onEvent(AddBookEvent.OnChangeCoverUrlInputDialogVisibility) },
                 onSubmit = {
-                    viewModel.onEvent(AddBookEvent.onSetAsyncImageUrl(it))
+                    viewModel.onEvent(AddBookEvent.OnSetAsyncImageUrl(it))
                 }
             )
         }

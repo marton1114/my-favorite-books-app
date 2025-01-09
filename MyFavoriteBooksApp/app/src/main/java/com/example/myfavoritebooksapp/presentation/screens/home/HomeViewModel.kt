@@ -25,13 +25,13 @@ class HomeViewModel @Inject constructor(
 
     fun onEvent(event: HomeEvent) {
         when (event) {
-            is HomeEvent.onRefreshBookList -> {
+            is HomeEvent.OnRefreshBookList -> {
                 getBookList()
             }
         }
     }
 
-    fun String.containsPalindrome(): Boolean {
+    private fun String.containsPalindrome(): Boolean {
         val cleaned = this.replace(Regex("\\s+"), " ").lowercase()
         for (word in cleaned.split(" ")) {
             println(word)

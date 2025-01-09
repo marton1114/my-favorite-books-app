@@ -3,7 +3,6 @@ package com.example.myfavoritebooksapp.data.model
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.myfavoritebooksapp.presentation.navigation.BookDetailsRoute
-import com.example.myfavoritebooksapp.presentation.screens.book_details.BookDetailsScreen
 
 
 @Entity(tableName = "BOOK_TABLE")
