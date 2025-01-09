@@ -8,31 +8,33 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 private val DarkColorScheme = darkColorScheme(
-    primary = Brown80,
-    onPrimary = Brown20,
-    primaryContainer = Brown30,
-    onPrimaryContainer = Brown90,
-    inversePrimary = Brown40,
-    secondary = DarkBrown80,
-    onSecondary = DarkBrown20,
-    secondaryContainer = DarkBrown30,
-    onSecondaryContainer = DarkBrown90,
-    tertiary = Green80,
-    onTertiary = Green20,
-    tertiaryContainer = Green30,
-    onTertiaryContainer = Green90,
+    primary = Brown40,
+    onPrimary = Color.White,
+    primaryContainer = Brown90,
+    onPrimaryContainer = Brown10,
+    inversePrimary = Brown80,
+    secondary = DarkBrown40,
+    onSecondary = Color.White,
+    secondaryContainer = DarkBrown90,
+    onSecondaryContainer = DarkBrown10,
+    tertiary = Green40,
+    onTertiary = Color.White,
+    tertiaryContainer = Green90,
+    onTertiaryContainer = Green10,
+
     error = Red80,
     onError = Red20,
     errorContainer = Red30,
     onErrorContainer = Red90,
-    background = Grey10,
-    onBackground = Grey90,
-    surface = BrownGrey30,
+    background = Grey07,
+    onBackground = Grey95,
+    surface = BrownGrey15,
     onSurface = BrownGrey80,
     inverseSurface = Grey90,
     inverseOnSurface = Grey10,
-    surfaceVariant = BrownGrey30,
+    surfaceVariant = BrownGrey15,
     onSurfaceVariant = BrownGrey80,
+    surfaceContainer = BrownGrey15,
     outline = BrownGrey80
 )
 
@@ -50,6 +52,7 @@ private val LightColorScheme = lightColorScheme(
     onTertiary = Color.White,
     tertiaryContainer = Green90,
     onTertiaryContainer = Green10,
+
     error = Red40,
     onError = Color.White,
     errorContainer = Red90,
@@ -62,6 +65,7 @@ private val LightColorScheme = lightColorScheme(
     inverseOnSurface = Grey95,
     surfaceVariant = BrownGrey90,
     onSurfaceVariant = BrownGrey30,
+    surfaceContainer = BrownGrey90,
     outline = BrownGrey50
 )
 
