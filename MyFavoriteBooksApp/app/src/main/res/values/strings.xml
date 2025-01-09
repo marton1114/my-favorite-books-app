@@ -4,6 +4,7 @@
     <string name="content_description_save_icon">Save Icon</string>
     <string name="content_description_add_icon">Add Icon</string>
     <string name="content_description_book_cover">Book Cover</string>
+    <string name="content_description_book_list_component">Book List Component</string>
     <string name="cover_url_input_dialog_label">Add meg az URL-t</string>
     <string name="cover_url_input_dialog_placeholder">e.g. https://humanitas.ro/assets/images/products/Anna-Karenina.jpg</string>
     <string name="cancel_button_label">Mégse</string>
@@ -18,7 +19,6 @@
     <string name="book_description_form_label">Leírás</string>
     <string name="book_description_form_placeholder">A könyv leírása</string>
     <string name="book_description_title_label">Könyv részletei</string>
-    <string name="content_description_book_list_component">Book List Component</string>
     <string name="my_favorite_books_title_label">Kedvenc Könyveim</string>
     <string name="floating_action_button_new_book_label">Új Könyv</string>
     <string name="number_of_books_label">%1$s KÖNYV</string>
